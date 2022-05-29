@@ -1,0 +1,37 @@
+@import "/src/Color.scss";
+
+.custom-select {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+
+  select {
+    appearance: none;
+    outline: 0;
+    width: 100%;
+    font-size: 1.3rem;
+    line-height: 1.7;
+    border: 2px solid $border-black;
+    padding-left: 8px;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    width: 0px;
+    height: 0px;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid $border-black;
+    top: 50%;
+    right: 10px;
+    cursor: pointer;
+    z-index: 100;
+    &:hover {
+      background: red;
+    }
+  }
+  &:focus &:active {
+    outline: none;
+  }
+}

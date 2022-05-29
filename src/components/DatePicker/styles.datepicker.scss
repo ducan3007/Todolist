@@ -1,0 +1,51 @@
+@import "/src/Color.scss";
+.date-picker-container {
+  display: flex;
+  border: 2px solid $border-black;
+  align-items: center;
+  justify-content: space-between;
+
+  .date-picker-content {
+    flex: 1;
+  }
+  .date-picker-button {
+    border: solid $border-black;
+    border-width: 0px 0px 0px 2px;
+    .date-picker {
+      display: inline-block;
+      position: relative;
+      width: 30px;
+      height: 30px;
+      top: 8px;
+      left: 5px;
+
+      .date-picker-toggle {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      .date-picker-input {
+        position: absolute;
+        left: -5px;
+        top: -5px;
+        opacity: 0;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+      }
+      .date-picker-input::-webkit-calendar-picker-indicator {
+        position: absolute;
+        left: -10px;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        cursor: pointer;
+      }
+    }
+  }
+}

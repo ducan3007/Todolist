@@ -1,0 +1,43 @@
+@import "/src/Color.scss";
+
+.tasks-container {
+  position: relative;
+  border: 1px solid black;
+  box-sizing: border-box;
+  width: 100%;
+  flex: 1.4;
+
+  .tasks-content {
+    padding: 0px 50px 30px 50px;
+
+    @media (max-width: 768px) {
+      padding: 0px 5px 25px 5px;
+    }
+  }
+  .search-bar {
+    padding-bottom: 12px;
+  }
+  .list-task {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .bulk-action {
+    position: sticky;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    background-color: $background-gray;
+    gap: 5px;
+    padding: 28px 22px;
+    border: 1px solid $border-black;
+
+    .btn-group {
+      display: flex;
+      gap: 5px;
+    }
+  }
+  .display-none {
+    display: none;
+  }
+}

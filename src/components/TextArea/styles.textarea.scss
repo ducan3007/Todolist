@@ -1,0 +1,14 @@
+@import "/src/Color.scss";
+
+.text-area {
+  background: #fff;
+  border-radius: 3px;
+  border: 2px solid $border-black;
+  height: 120px;
+  width: 100%;
+  box-sizing: border-box;
+  &:focus {
+    border-color: $border-black;
+    outline: none;
+  }
+}

@@ -1,0 +1,13 @@
+.container {
+  margin: 1vh auto;
+  width: min(1400px, 100%);
+  display: flex;
+  gap: 1px;
+  min-height: 98vh;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    width: 100%;
+  }
+}
+

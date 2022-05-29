@@ -1,0 +1,36 @@
+.checkbox-container {
+  position: relative;
+  padding: 0px 10px 0px 36px;
+  font-size: 1.6rem;
+  cursor: pointer;
+
+  input {
+    height: 0;
+    width: 0;
+    &:checked ~ .checkmark::after {
+      display: block;
+    }
+  }
+  .checkmark {
+    position: absolute;
+    top: 3px;
+    left: 0;
+    height: 18px;
+    width: 18px;
+    border: 2px solid rgb(84, 82, 82);
+    border-radius: 3px;
+
+    &::after {
+      content: "";
+      position: absolute;
+      left: 9px;
+      bottom: 2px;
+      width: 5px;
+      height: 22px;
+      border: solid rgb(41, 40, 40);
+      border-width: 0 2px 2px 0;
+      display: none;
+      transform: rotate(45deg);
+    }
+  }
+}

@@ -1,0 +1,33 @@
+@import "/src/Color.scss";
+
+.btn {
+  display: inline-block;
+  padding: 6px 12px;
+  width: 112px;
+  font-size: 1.6rem;
+  margin-bottom: 0;
+  cursor: pointer;
+  user-select: none;
+  border: 1px solid transparent;
+  border-radius: 5px;
+
+  &:active {
+    transform: scale(0.98);
+  }
+  @media (max-width: 768px) {
+    width: 80%;
+    font-size: 1.1rem;
+  }
+}
+.btn-warning {
+  color: #fff;
+  background-color: $btn-warning;
+}
+.btn-primary {
+  color: #fff;
+  background-color: $btn-primary;
+}
+.btn-secondary {
+  color: #fff;
+  background-color: $btn-secondary;
+}

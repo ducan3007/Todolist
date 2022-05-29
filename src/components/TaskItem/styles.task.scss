@@ -1,0 +1,48 @@
+@import "/src/Color.scss";
+
+.task-item {
+  .task-header {
+    display: flex;
+    padding: 18px 18px;
+    justify-content: space-between;
+    align-items: center;
+    border: 2px solid $border-black;
+    .btn-group {
+      display: flex;
+      gap: 5px;
+    }
+  }
+  .task-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 10px 22px;
+    border: solid $border-black;
+    border-width: 0px 2px 2px 2px;
+
+    @media (max-width: 768px) {
+      padding: 5px 5px;
+    }
+
+    .label {
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+    .task-title {
+      padding-top: 20px;
+    }
+    .task-info {
+      display: flex;
+      gap: 50px;
+      @media (max-width: 768px) {
+        gap: 10px;
+      }
+    }
+  }
+  .date-picker_ddd {
+    width: 150px;
+  }
+  .display-none {
+    display: none;
+  }
+}

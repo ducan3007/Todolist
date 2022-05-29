@@ -1,1 +1,0 @@
-### SotaTek React test
