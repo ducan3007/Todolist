@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-
 import { useDispatch } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
-
+import { addTask } from "../../redux/tasks/tasks.action";
 import TextField from "../../components/TextField/TextField";
 import TextArea from "../../components/TextArea/TextArea";
 import DatePicker from "../../components/DatePicker/DatePicker";
@@ -12,7 +11,7 @@ import Button from "../../components/Button/Button";
 import "./styles.scss";
 import { getCurrentDate } from "../../utils/date";
 
-const AddTask = () => {
+const CreateTaskPage = () => {
   const dispatch = useDispatch();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -21,32 +20,21 @@ const AddTask = () => {
   const [error, setError] = useState(false);
 
   const handleSubmit = () => {
-    if (title === "" || description === "" || dueDate === "" || priority === "") return setError(true);
-
-    console.log({
-      id: uuidv4(),
-      title,
-      description,
-      dueDate,
-      priority,
-    });
-    dispatch({
-      type: "ADD_TASK",
-      payload: {
-        id: uuidv4(),
-        title,
-        description,
-        dueDate,
-        priority,
-      },
-    });
+    if (title === "") return setError(true);
+    dispatch(addTask({ id: uuidv4(), title, description, dueDate, priority }));
     setError(false);
+    setTitle("");
   };
 
   return (
     <div className="create-task">
       <h3 style={{ textAlign: "center" }}>New Task</h3>
       <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+        {error && (
+          <span style={{ color: "red" }} className="label">
+            This field is required.
+          </span>
+        )}
         <TextField
           fullwidth
           placeholder="Add new task ..."
@@ -76,11 +64,6 @@ const AddTask = () => {
           </div>
         </div>
         <div>
-          {error && (
-            <span style={{ color: "red" }} className="label">
-              Please fill out all the fields.
-            </span>
-          )}
           <Button onClick={handleSubmit} style={{ width: "100%" }} color={"primary"}>
             Create
           </Button>
@@ -90,4 +73,4 @@ const AddTask = () => {
   );
 };
 
-export default AddTask;
+export default CreateTaskPage;

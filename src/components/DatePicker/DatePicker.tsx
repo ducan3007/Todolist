@@ -12,9 +12,6 @@ interface DatePickerProps {
 }
 
 const DatePicker = ({ onChange, style, ...props }: DatePickerProps) => {
-
-  const [date, setDate] = React.useState(getCurrentDate());
-
   return (
     <div style={style} className={`date-picker-container ${props.className}`}>
       <div className="date-picker-content">
@@ -25,7 +22,13 @@ const DatePicker = ({ onChange, style, ...props }: DatePickerProps) => {
           <span className="date-picker-toggle">
             <DateIcon width="20px" height="20px" />
           </span>
-          <input className="date-picker-input" min={getCurrentDate()} type="date" onChange={onChange} />
+          <input
+            value={props?.value}
+            className="date-picker-input"
+            min={getCurrentDate()}
+            type="date"
+            onChange={onChange}
+          />
         </span>
       </div>
     </div>

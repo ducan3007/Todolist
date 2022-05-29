@@ -18,4 +18,10 @@ export const updateTask = (task: Task) => {
         payload: task
     }
 }
+export const bulkUpdateTask = (tasks: Task[]) => {
+    return {
+        type: "BULK_UPDATE_TASK",
+        payload: tasks
+    }
+}
 

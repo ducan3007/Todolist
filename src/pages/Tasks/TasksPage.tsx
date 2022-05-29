@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getTasks } from "../../redux/selector";
-
+import { bulkUpdateTask } from "../../redux/tasks/tasks.action";
 import { Task } from "../../models/task";
 
 import Button from "../../components/Button/Button";
@@ -9,15 +9,20 @@ import TaskItem from "../../components/TaskItem/TaskItem";
 import TextField from "../../components/TextField/TextField";
 import "./styles.scss";
 
-const Tasks = () => {
+const TasksPage = () => {
   const dispatch = useDispatch();
-  const { tasks: TaskList } = useSelector(getTasks);
-  console.log("🚀 ~ file: Tasks.tsx ~ line 15 ~ Tasks ~ taskList", TaskList);
+
+  const { tasks } = useSelector(getTasks);
+
   const [search, setSearch] = useState("");
 
-  // const [showAction, setShowAction] = useState(false);
+  const [checkedTasks, setCheckedTasks] = useState<Task[] | []>([]);
 
-  const [checkedTasks, setCheckedTasks] = useState([""]);
+  const handleBulkRemove = () => {
+    let newTasks = tasks.filter((task: never) => !checkedTasks.includes(task));
+    dispatch(bulkUpdateTask(newTasks));
+    setCheckedTasks([]);
+  };
 
   return (
     <div className="tasks-container">
@@ -32,23 +37,31 @@ const Tasks = () => {
           ></TextField>
         </div>
         <div className="list-task">
-          {TaskList?.map((task: Task) => {
-            return <TaskItem key={task.id} task={task}></TaskItem>;
-          })}
+          {tasks
+            ?.sort((task_a: any, task_b: any) => {
+              return new Date(task_a.dueDate).valueOf() - new Date(task_b.dueDate).valueOf();
+            })
+            .map((task: Task) => {
+              if (task.title.includes(search))
+                return <TaskItem key={task.id} task={task} pushCheckedTask={setCheckedTasks}></TaskItem>;
+              return null;
+            })}
         </div>
       </div>
 
-      <div className={`bulk-action ${checkedTasks.length !== 0 ? "display-none" : ""}`}>
+      <div className={`bulk-action ${checkedTasks.length === 0 ? "display-none" : ""}`}>
         <div>
           <span style={{ fontSize: "1.6rem", display: "block" }}>Bulk Action:</span>
         </div>
         <div className="btn-group">
           <Button color="secondary">Done</Button>
-          <Button color="warning">Remove</Button>
+          <Button color="warning" onClick={handleBulkRemove}>
+            Remove
+          </Button>
         </div>
       </div>
     </div>
   );
 };
 
-export default Tasks;
+export default TasksPage;
